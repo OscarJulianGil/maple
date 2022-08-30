@@ -2,6 +2,8 @@ package com.example.Maple_Project.entities;
 
 import javax.persistence.*;
 
+// Ajustes  29 Agosto
+
 @Entity
 @Table (name = "Empresa")
 
