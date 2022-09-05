@@ -2,14 +2,13 @@ package com.example.Maple_Project.entities;
 
 import javax.persistence.*;
 
-// Ajustes  29 Agosto
 @Entity
 @Table (name = "Empresa")
 
 public class Empresa {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column (name = "nombre")
     private String nombre;
