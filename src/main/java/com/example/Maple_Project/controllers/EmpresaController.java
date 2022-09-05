@@ -39,8 +39,8 @@ public class EmpresaController {
     }
 
     @PutMapping("/enterprises/{id}")
-    public Response updateEmpresa(@RequestBody Empresa request){
-        return this.empresaService.updateEmpresaById(request);
+    public Response updateEmpresa(@RequestBody Empresa request, @PathVariable("id") int Id){
+        return this.empresaService.updateEmpresaById(request, Id);
     }
 
 

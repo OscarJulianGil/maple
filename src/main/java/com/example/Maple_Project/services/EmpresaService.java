@@ -74,16 +74,16 @@ public class EmpresaService<id> {
 
     //Metodo para actualizar un registro de una empresa
 
-    public Response updateEmpresaById(Empresa data) {
+    public Response updateEmpresaById(Empresa data, int Id) {
         Response response = new Response();
 
-        if (data.getId() == 0) {
+        if (Id == 0) {
             response.setCode(500);
             response.setMessage("Error el ID de la empresa no es valido");
             return response;
         }
 
-        Empresa exists = selectById(data.getId());
+        Empresa exists = selectById(Id);
         if (exists == null) {
             response.setCode(500);
             response.setMessage("Error, la empresa no existe en la base de datos");
