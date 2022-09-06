@@ -1,14 +1,23 @@
 package com.example.Maple_Project.entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Usuario")
 public class Usuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(name = "nombre")
     private String nombre;
+    @Column(name = "correo")
     private String correo;
-    Empresa empresa;
-    private String rol;
+    //Empresa empresa;
+    //private String rol;
 
-    boolean admin;
-    boolean operativo;
+    //boolean admin;
+    //boolean operativo;
 
     public String getNombre() {
         return nombre;
@@ -26,11 +35,11 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public Empresa getEmpresa() {
+    /*public Empresa getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(Empresa empresa) {
+    //public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
     }
 
@@ -46,7 +55,7 @@ public class Usuario {
         else{
             this.admin = false;
             this.operativo = true;
-        }
-    }
+        }*/
 }
+
 
