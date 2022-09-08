@@ -15,8 +15,8 @@ public class Usuario {
     private String correo;
 
     @ManyToOne
-    @JoinColumn(name = "umovimientos")
-    private MovimientoDinero movimientoDinero;
+    @JoinColumn(name = "usuario")
+    private Empresa empresa;
 
     //private String rol;
 
@@ -48,12 +48,12 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public MovimientoDinero getMovimientoDinero() {
-        return movimientoDinero;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setMovimientoDinero(MovimientoDinero movimientoDinero) {
-        this.movimientoDinero = movimientoDinero;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     /*public String getRol() {

@@ -15,6 +15,14 @@ public class MovimientoDinero {
     @Column(name = "concepto")
     private String concepto;
 
+    @ManyToOne
+    @JoinColumn(name = "umovimientos")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "emovimientos")
+    private Empresa empresa;
+
 
     public int getId() {
         return id;
@@ -39,5 +47,24 @@ public class MovimientoDinero {
     public void setConcepto(String concepto) {
         this.concepto = concepto;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+
+
 
 }

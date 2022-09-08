@@ -1,4 +1,10 @@
 package com.example.Maple_Project.repository;
 
-public interface IMovimientoDineroRepository {
+import com.example.Maple_Project.entities.MovimientoDinero;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface IMovimientoDineroRepository extends JpaRepository<MovimientoDinero, Integer> {
+
 }
