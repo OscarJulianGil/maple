@@ -3,41 +3,38 @@ package com.example.Maple_Project.services;
 import com.example.Maple_Project.entities.Empresa;
 import com.example.Maple_Project.repository.IEmpresaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
-public class EmpresaService<id> {
+public class EmpresaService {
 
-    //propiedad de la interfaz
     private IEmpresaRepository empresaRepository;
-
-    //constructor
     public EmpresaService(IEmpresaRepository repository) {
         this.empresaRepository = repository;
     }
 
-    //Metodo para obtener la lista de empresas de la base de datos
+    //El sistema permite consultar todas las empresas
     public ArrayList<Empresa> selectAll() {
         return (ArrayList<Empresa>) empresaRepository.findAll();
     }
 
-    //Metodo para registrar una empresa en la base de datos
-
+    //El sistema permite crear una empresa
     public Response crearEmpresa(Empresa data) {
 
-        //Antes de crearlo debo validar si el nit ya existe
+        //Valida por NIT si el registro ya existe
         ArrayList<Empresa> identificacion = this.empresaRepository.findByNit(data.getNit());
 
-        //Si llega con datos es decir que ya existe y me va a responder con el siguiente error
+        //Si existe, arroja error
         if (identificacion != null && identificacion.size() > 0) {
             Response response = new Response();
             response.setCode(500);
             response.setMessage("Este NIT ya existe");
             return response;
         }
-
+        //Si no existe, procede con la creación
         Response response = new Response();
         this.empresaRepository.save(data);
         response.setCode(200);
@@ -45,8 +42,7 @@ public class EmpresaService<id> {
         return response;
     }
 
-    //Metodo para obtener datos por el id
-
+    //El sistema permite consultar una sola empresa
     public Empresa selectById(int Id) {
         Optional<Empresa> validaSiExiste = this.empresaRepository.findById(Id);
         if (validaSiExiste.isPresent()) {
@@ -56,8 +52,7 @@ public class EmpresaService<id> {
         }
     }
 
-    //Metodo para eliminar un dato a través del id
-
+    //El sistema permite eliminar una empresa
     public Response deleteEmpresaById(int Id) {
         Response response = new Response();
         try {
@@ -72,8 +67,7 @@ public class EmpresaService<id> {
         }
     }
 
-    //Metodo para actualizar un registro de una empresa
-
+    //El sistema permite editar una empresa
     public Response updateEmpresaById(Empresa data, int Id) {
         Response response = new Response();
 
@@ -83,6 +77,7 @@ public class EmpresaService<id> {
             return response;
         }
 
+        //Si la empresa no existe, arroja error
         Empresa exists = selectById(Id);
         if (exists == null) {
             response.setCode(500);
@@ -90,16 +85,41 @@ public class EmpresaService<id> {
             return response;
         }
 
-        exists.setNombre(data.getNombre());
-        exists.setDocumento(data.getDocumento());
-        exists.setDireccion(data.getDireccion());
-        exists.setTelefono(data.getTelefono());
-        exists.setNit(data.getNit());
+        boolean needUpdate = false;
 
-        this.empresaRepository.save(exists);
+        //Actualiza la data
+        if (StringUtils.hasLength(data.getNombre())) {
+            exists.setNombre(data.getNombre());
+            needUpdate = true;
+        }
+
+        if (StringUtils.hasLength(data.getDireccion())) {
+            exists.setDireccion(data.getDireccion());
+            needUpdate = true;
+        }
+
+        if (data.getTelefono() > 0) {
+            exists.setTelefono(data.getTelefono());
+            needUpdate = true;
+        }
+
+        if (data.getNit() > 0) {
+            exists.setNit(data.getNit());
+            needUpdate = true;
+        }
+
+        if (StringUtils.hasLength(data.getDocumento())) {
+            exists.setDocumento(data.getDocumento());
+            needUpdate = true;
+        }
+
+        //Envia mensaje de actualización exitosa
+        if (needUpdate) {
+            this.empresaRepository.save(exists);
+        }
+
         response.setCode(200);
         response.setMessage("Empresa modificada exitosamente");
         return response;
     }
 }
-

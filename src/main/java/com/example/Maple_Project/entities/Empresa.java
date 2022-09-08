@@ -21,6 +21,14 @@ public class Empresa {
     @Column (name = "nit")
     private int nit;
 
+    @ManyToOne
+    @JoinColumn(name = "usuarios")
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "emovimientos")
+    private MovimientoDinero movimientoDinero;
+
     public int getId() {
         return id;
     }
@@ -67,5 +75,21 @@ public class Empresa {
 
     public void setNit(int nit) {
         this.nit = nit;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public MovimientoDinero getMovimientoDinero() {
+        return movimientoDinero;
+    }
+
+    public void setMovimientoDinero(MovimientoDinero movimientoDinero) {
+        this.movimientoDinero = movimientoDinero;
     }
 }

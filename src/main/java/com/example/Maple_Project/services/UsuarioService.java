@@ -1,30 +1,26 @@
 package com.example.Maple_Project.services;
 
-import com.example.Maple_Project.entities.Empresa;
 import com.example.Maple_Project.entities.Usuario;
 import com.example.Maple_Project.repository.IUsuarioRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
 public class UsuarioService {
-
-    //propiedad de la interfaz
     private IUsuarioRepository usuarioRepository;
-
-    //constructor
     public UsuarioService(IUsuarioRepository repository) {
         this.usuarioRepository = repository;
     }
 
-    //Metodo para obtener la lista de usuarios de la base de datos
+    //El sistema permite consultar todos los usuarios
     public ArrayList<Usuario> selectAll() {
         return (ArrayList<Usuario>) this.usuarioRepository.findAll();
     }
 
-    ///Metodo para crear la lista de usuarios para la base de datos
+    //El sistema permite crear un usuario
     public Response crearUsuario(Usuario data) {
         Response response = new Response();
         this.usuarioRepository.save(data);
@@ -33,7 +29,7 @@ public class UsuarioService {
         return response;
     }
 
-    ///Metodo para obtener datos por el Id
+    //El sistema permite consultar un solo usuario
     public Usuario selectById(int Id) {
         Optional<Usuario> revisarSiExiste = this.usuarioRepository.findById(Id);
         if (revisarSiExiste.isPresent()) {
@@ -44,8 +40,7 @@ public class UsuarioService {
         }
     }
 
-    ///Metodo que nos va permitir eliminiar un usuario
-
+    //El sistema permite eliminar un usuario
     public Response deleteUsuarioById(int Id) {
         Response response = new Response();
         try {
@@ -58,12 +53,10 @@ public class UsuarioService {
             response.setMessage("Error " + ex.getMessage());
             return response;
         }
-
     }
-
+    //El sistema permite editar un usuario
     public Response updateUsuarioById(Usuario data, int Id) {
         Response response = new Response();
-
 
         if (Id == 0) {
             response.setCode(500);
@@ -71,6 +64,7 @@ public class UsuarioService {
             return response;
         }
 
+        //Si el usuario no existe, arroja error
         Usuario exists = selectById(Id);
         if (exists == null) {
             response.setCode(500);
@@ -78,23 +72,38 @@ public class UsuarioService {
             return response;
         }
 
+        //Si ingresa un dato null o vacio, arroja error
         if (data.getCorreo().equals(null) || data.getCorreo().equals("")) {
             response.setCode(500);
             response.setMessage("Error, el correo electronico no es valido");
             return response;
         }
 
+        //Si ingresa un dato null o vacio, arroja error
         if (data.getNombre().equals(null) || data.getNombre().equals("")) {
             response.setCode(500);
             response.setMessage("Error, el Nombre no es valido");
             return response;
         }
 
-        exists.setNombre(data.getNombre());
-        exists.setCorreo(data.getCorreo());
+        //Actualiza la data
 
+        boolean needUpdate = false;
 
-        this.usuarioRepository.save(exists);
+        if (StringUtils.hasLength(data.getNombre())) {
+            exists.setNombre(data.getNombre());
+            needUpdate = true;
+        }
+
+        if (StringUtils.hasLength(data.getCorreo())) {
+            exists.setCorreo(data.getCorreo());
+            needUpdate = true;
+        }
+
+        //Envia mensaje de actualización exitosa
+        if (needUpdate){
+            this.usuarioRepository.save(exists);
+        }
         response.setCode(200);
         response.setMessage("Usuario modificado exitosamente");
         return response;

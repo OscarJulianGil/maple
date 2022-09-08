@@ -1,11 +1,28 @@
 package com.example.Maple_Project.entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "MovimientoDinero")
 public class MovimientoDinero {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(name = "monto")
     private int monto;
+    @Column(name = "concepto")
     private String concepto;
 
-    Usuario usuario;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getMonto() {
         return monto;
@@ -23,11 +40,4 @@ public class MovimientoDinero {
         this.concepto = concepto;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }

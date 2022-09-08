@@ -4,7 +4,6 @@ import com.example.Maple_Project.entities.Usuario;
 import com.example.Maple_Project.services.Response;
 import com.example.Maple_Project.services.UsuarioService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 
 @RestController
@@ -29,7 +28,6 @@ public class UsuarioController {
     @RequestMapping("/users/{id}")
     public Usuario getIdUsuario(@PathVariable int id){
         return this.usuarioService.selectById(id);
-
     }
 
     @DeleteMapping("/users/{id}")
@@ -37,14 +35,8 @@ public class UsuarioController {
         return this.usuarioService.deleteUsuarioById(id);
     }
 
-    @PutMapping("/users/{id}")
+    @PatchMapping("/users/{id}")
     public Response updateUsuario(@RequestBody Usuario request,@PathVariable("id")int id){
         return this.usuarioService.updateUsuarioById(request, id);
     }
-
-
-
-
-
-
 }

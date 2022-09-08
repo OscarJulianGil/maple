@@ -14,4 +14,3 @@ public interface IEmpresaRepository extends JpaRepository<Empresa, Integer> {
     ArrayList<Empresa> findByNit(int nit);
 
 }
-

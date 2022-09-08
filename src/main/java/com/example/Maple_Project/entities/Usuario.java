@@ -13,7 +13,11 @@ public class Usuario {
     private String nombre;
     @Column(name = "correo")
     private String correo;
-    //Empresa empresa;
+
+    @ManyToOne
+    @JoinColumn(name = "umovimientos")
+    private MovimientoDinero movimientoDinero;
+
     //private String rol;
 
     //boolean admin;
@@ -44,15 +48,15 @@ public class Usuario {
         this.correo = correo;
     }
 
-    /*public Empresa getEmpresa() {
-        return empresa;
+    public MovimientoDinero getMovimientoDinero() {
+        return movimientoDinero;
     }
 
-    //public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
+    public void setMovimientoDinero(MovimientoDinero movimientoDinero) {
+        this.movimientoDinero = movimientoDinero;
     }
 
-    public String getRol() {
+    /*public String getRol() {
         return rol;
     }
 
@@ -66,5 +70,3 @@ public class Usuario {
             this.operativo = true;
         }*/
 }
-
-
