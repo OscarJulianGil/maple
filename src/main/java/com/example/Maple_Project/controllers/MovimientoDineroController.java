@@ -28,7 +28,7 @@ public class MovimientoDineroController {
     }
 
     @DeleteMapping("/enterprises/{id}/movements")
-    public Response deleteMovimientoDineroByEmpresaById(@PathVariable int empresaId) {
+    public Response deleteMovimientoDinero(@PathVariable("id") int empresaId ) {
         return this.movimientoDineroService.deleteMovimientoDineroByEmpresaById(empresaId);
     }
 }
