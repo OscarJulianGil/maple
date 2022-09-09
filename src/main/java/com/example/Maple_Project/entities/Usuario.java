@@ -15,7 +15,7 @@ public class Usuario {
     private String correo;
 
     @ManyToOne
-    @JoinColumn(name = "usuario")
+    @JoinColumn(name = "codEmpresa")
     private Empresa empresa;
 
     //private String rol;
