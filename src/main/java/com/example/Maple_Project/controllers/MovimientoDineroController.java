@@ -1,5 +1,6 @@
 package com.example.Maple_Project.controllers;
 
+import com.example.Maple_Project.entities.Empresa;
 import com.example.Maple_Project.entities.MovimientoDinero;
 import com.example.Maple_Project.entities.Usuario;
 import com.example.Maple_Project.services.EmpresaService;
@@ -12,23 +13,35 @@ import java.util.ArrayList;
 public class MovimientoDineroController {
 
     private MovimientoDineroService movimientoDineroService;
+    private EmpresaService empresaService;
 
-    public MovimientoDineroController(MovimientoDineroService service){
+    public MovimientoDineroController(MovimientoDineroService service, EmpresaService eservice) {
         this.movimientoDineroService = service;
+        this.empresaService = eservice;
     }
 
     @RequestMapping("/enterprises/{id}/movements")
-    public ArrayList<MovimientoDinero> getMovimientosByIdEmpresa(@PathVariable Integer id){
-        return this.movimientoDineroService.selectAll(id);
+    public ArrayList<MovimientoDinero> getMovimientosByIdEmpresa(@PathVariable int empresaid) {
+        return this.movimientoDineroService.selectAll(empresaid);
     }
 
     @PostMapping("/enterprises/{id}/movements")
-    public Response crearMovimiento(@RequestBody MovimientoDinero data){
-        return this.movimientoDineroService.crearMovimientoDinero(data);
+    public Response crearMovimiento(@RequestBody MovimientoDinero data, @PathVariable(name = "id") int id) {
+        Empresa empresa = this.empresaService.selectById(id);
+        data.setEmpresa(empresa);
+        return this.movimientoDineroService.crearMovimientoDineroByEmpresa(data);
+    }
+
+    @PatchMapping("/enterprises/{id}/movements")
+    public Response updateMovimiento(@RequestBody MovimientoDinero data, @PathVariable(name = "id") int id) {
+        Empresa empresa = this.empresaService.selectById(id);
+        data.setEmpresa(empresa);
+        return this.movimientoDineroService.updateMovimientoDineroByEmpresa(data, id);
     }
 
     @DeleteMapping("/enterprises/{id}/movements")
-    public Response deleteMovimientoDinero(@PathVariable("id") int empresaId ) {
-        return this.movimientoDineroService.deleteMovimientoDineroByEmpresaById(empresaId);
+    public Response deleteMovimientoDinero(@PathVariable("id") int id) {
+        Empresa empresa = this.empresaService.selectById(id);
+        return this.movimientoDineroService.deleteMovimientoDinero(empresa);
     }
 }
