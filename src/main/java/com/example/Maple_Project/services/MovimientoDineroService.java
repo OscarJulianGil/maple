@@ -64,44 +64,47 @@ public class MovimientoDineroService {
             return response;
         }
 
-        MovimientoDinero exists = selectById(data.getId());
-        if (exists == null) {
+        MovimientoDinero existsMovimiento = selectById(data.getId());
+        if (existsMovimiento == null) {
             response.setCode(500);
             response.setMessage("Error, no existen movimientos para la empresa ingresada");
             return response;
         }
 
-        boolean needUpdate = false;
+        boolean needUpdateMovimiento = false;
 
         if (data.getMonto() > 0) {
-            exists.setMonto(data.getMonto());
-            needUpdate = true;
+            existsMovimiento.setMonto(data.getMonto());
+            needUpdateMovimiento = true;
         }
 
         if (StringUtils.hasLength(data.getConcepto())) {
-            exists.setConcepto(data.getConcepto());
-            needUpdate = true;
+            existsMovimiento.setConcepto(data.getConcepto());
+            needUpdateMovimiento = true;
+        }
+
+        if (needUpdateMovimiento) {
+            this.movimientoDineroRepository.save(existsMovimiento);
+        }
 
             //Envia mensaje de actualización exitosa
 
-            this.movimientoDineroRepository.save(exists);
             response.setCode(200);
             response.setMessage("Movimientos modificados exitosamente");
             return response;
         }
 
         public Response deleteMovimientoDinero (Empresa empresa){
-            Response response1 = new Response();
+            Response response = new Response();
             try {
                 this.movimientoDineroRepository.deleteMovimientoDineroByEmpresa(empresa);
-                response1.setCode(200);
-                response1.setMessage("Movimiento de dinero eliminado exitosamente");
-                return response1;
+                response.setCode(200);
+                response.setMessage("Movimiento de dinero eliminado exitosamente");
+                return response;
             } catch (Exception ex) {
-                response1.setCode(500);
-                response1.setMessage("Error " + ex.getMessage());
-                return response1;
+                response.setCode(500);
+                response.setMessage("Error " + ex.getMessage());
+                return response;
             }
         }
-    }
 }
