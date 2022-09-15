@@ -41,6 +41,16 @@ public class MovimientoDineroService {
         return response;
     }
 
+    public Response crearMovimientoDinero(MovimientoDinero data) {
+        Response response = new Response();
+        this.movimientoDineroRepository.save(data);
+        response.setCode(200);
+        response.setMessage("Movimiento registrado exitosamente");
+        return response;
+    }
+
+
+
     public Response updateMovimientoDineroByEmpresa(MovimientoDinero data, int id) {
         Response response = new Response();
 

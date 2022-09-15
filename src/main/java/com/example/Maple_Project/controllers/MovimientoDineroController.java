@@ -32,6 +32,13 @@ public class MovimientoDineroController {
         return this.movimientoDineroService.crearMovimientoDineroByEmpresa(data);
     }
 
+
+    @PostMapping("/movements")
+    public Response createMovimientoDinero(@RequestBody MovimientoDinero request){
+        return this.movimientoDineroService.crearMovimientoDinero(request);
+    }
+
+
     @PatchMapping("/enterprises/{id}/movements")
     public Response updateMovimiento(@RequestBody MovimientoDinero data, @PathVariable(name = "id") int id) {
         Empresa empresa = this.empresaService.selectById(id);
