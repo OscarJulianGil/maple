@@ -23,6 +23,9 @@ public class Usuario {
     //boolean admin;
     //boolean operativo;
 
+    @Column(name ="password", length = 200)
+    private String password;
+
 
     public int getId() {
         return id;
@@ -54,6 +57,14 @@ public class Usuario {
 
     public void setEmpresa(Empresa empresa) {
         this.empresa = empresa;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /*public String getRol() {

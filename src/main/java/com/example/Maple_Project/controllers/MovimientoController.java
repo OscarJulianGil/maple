@@ -5,16 +5,20 @@ import com.example.Maple_Project.services.EmpresaService;
 import com.example.Maple_Project.services.Response;
 import com.example.Maple_Project.services.MovimientoDineroService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.example.Maple_Project.repository.IEmpresaRepository;
 
 @Controller
 @RequestMapping("movimiento")
 public class MovimientoController {
 
     private MovimientoDineroService movimientoDineroService;
+    //private EmpresaService empresaService;
+    //private IEmpresaRepository empresaRepository;
 
     public MovimientoController(MovimientoDineroService service) {
         this.movimientoDineroService = service;
@@ -26,7 +30,10 @@ public class MovimientoController {
     }
 
     @GetMapping("createmovimiento")
-    public String createmovimiento(){
+    //public String createmovimiento(Model model)
+    public String createmovimiento()
+    {
+        //model.addAttribute("empresa", empresaRepository.findAll());
         return "movimientos/create";
     }
 

@@ -108,4 +108,33 @@ public class UsuarioService {
         response.setMessage("Usuario modificado exitosamente");
         return response;
     }
+
+    //Logeo
+
+    public Response loginUser(Usuario data){
+        Response response = new Response();
+
+        //Logica de negocio
+        //Validamos datos
+
+
+        //Validamos password
+        if(data.getPassword().equals(null) || data.getPassword().equals("")){
+            response.setCode(500);
+            response.setMessage("Error, su contraseña no es válida.");
+            return  response;
+        }
+
+        ArrayList<Usuario> existe = this.usuarioRepository.validaCredenciales(data.getCorreo(),data.getPassword());
+        if(existe != null && existe.size() > 0){
+            response.setCode(200);
+            response.setMessage("Usuario autenticado exitosamente.");
+            return  response;
+        }
+
+        response.setCode(500);
+        response.setMessage("Error, sus datos de acceso no son válidos");
+        return  response;
+    }
+
 }
