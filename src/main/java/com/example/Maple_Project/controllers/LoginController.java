@@ -28,6 +28,9 @@ public class LoginController {
         return "login/login";
     }
 
+    @GetMapping("inicio")
+    public String inicio (){return "inicio/inicio2";}
+
     /*@GetMapping("registro")
     public String registro(Model tiposdocumento){
         //Cargamos los documentos desde la logica de negocio.

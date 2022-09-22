@@ -25,6 +25,11 @@ public class MovimientoDineroController {
         return this.movimientoDineroService.selectAll(empresaid);
     }
 
+    @RequestMapping("/movements")
+    public ArrayList<MovimientoDinero> getUsuarios(){
+        return this.movimientoDineroService.selectAll();
+    }
+
     @PostMapping("/enterprises/{id}/movements")
     public Response crearMovimiento(@RequestBody MovimientoDinero data, @PathVariable(name = "id") int id) {
         Empresa empresa = this.empresaService.selectById(id);

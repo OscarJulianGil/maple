@@ -2,6 +2,7 @@ package com.example.Maple_Project.services;
 
 import com.example.Maple_Project.entities.Empresa;
 import com.example.Maple_Project.entities.MovimientoDinero;
+import com.example.Maple_Project.entities.Usuario;
 import com.example.Maple_Project.repository.IEmpresaRepository;
 import com.example.Maple_Project.repository.IMovimientoDineroRepository;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,11 @@ public class MovimientoDineroService {
 
     public ArrayList<MovimientoDinero> selectAll(int empresaId) {
         return (ArrayList<MovimientoDinero>) movimientoDineroRepository.findByEmpresaId(empresaId);
+    }
+
+    //El sistema permite consultar todos los movimientos
+    public ArrayList<MovimientoDinero> selectAll() {
+        return (ArrayList<MovimientoDinero>) this.movimientoDineroRepository.findAll();
     }
 
     public Response crearMovimientoDineroByEmpresa(MovimientoDinero data) {
