@@ -47,6 +47,29 @@ public class LoginController {
 
     @PostMapping("postlogin")
     public RedirectView postlogin(Usuario data){
+        Response response =this.service.loginUser(data);
+        if(response.getCode()  == 200){
+            return new RedirectView("/login/inicio");
+        }
+        else{
+            return new RedirectView("/login/error");
+
+        }
+
+    }
+
+    @GetMapping("error")
+    public String error(){
+        return "login/error";
+    }
+
+
+
+
+
+
+    /*@PostMapping("postlogin")
+    public RedirectView postlogin(Usuario data){
         Response response = this.service.loginUser(data);
         if(response.getCode() == 200){
             return new RedirectView("/login/inicio");
@@ -54,7 +77,7 @@ public class LoginController {
         else{
             return new RedirectView("/login/error");
         }
-    }
+    }*/
 
     /*@PostMapping("postregistro")
     public RedirectView postregisto(registroDTO data){
