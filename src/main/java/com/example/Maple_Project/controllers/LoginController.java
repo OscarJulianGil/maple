@@ -31,9 +31,6 @@ public class LoginController {
     @GetMapping("inicio")
     public String inicio (){return "inicio/inicio2";}
 
-    @GetMapping("error")
-    public String error (){return "inicio/404";}
-
     /*@GetMapping("registro")
     public String registro(Model tiposdocumento){
         //Cargamos los documentos desde la logica de negocio.
@@ -60,11 +57,8 @@ public class LoginController {
 
     @GetMapping("error")
     public String error(){
-        return "login/error";
+        return "inicio/404";
     }
-
-
-
 
 
 
