@@ -21,7 +21,6 @@ public class Empresa {
     @Column (name = "nit")
     private int nit;
 
-
     public int getId() {
         return id;
     }

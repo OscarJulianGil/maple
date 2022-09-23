@@ -18,6 +18,7 @@ public class Usuario {
     @JoinColumn(name = "codEmpresa")
     private Empresa empresa;
 
+
     //private String rol;
 
     //boolean admin;
