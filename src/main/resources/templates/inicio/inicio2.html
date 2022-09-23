@@ -2,9 +2,6 @@
 <!-- Cambiar logo maple-->
 <!-- Cambiar color barra lateral-->
 <!-- Corregir iconos-->
-<!-- Alinear movimientos-->
-<!-- Ajustar para que los links no me arrastren la parte de "incio" en la URL-->
-
 
 
 <!DOCTYPE html>
@@ -67,22 +64,23 @@
 
 
         <!-- Nav Item - Ingresos y egresos -->
+        <!-- ruta con ID "@{/movimiento/index/{id}(id=${variable})}"-->
         <li class="nav-item">
-            <a class="nav-link" href="movement/create">
+            <a class="nav-link" th:href="@{/movimiento/index}">
                <i class="fas fa-fw fa-table"></i>
                <span>Ingresos y egresos</span></a>
        </li>
 
        <!-- Nav Item - Usuarios -->
         <li class="nav-item">
-            <a class="nav-link" href="tables.html">
+            <a class="nav-link" th:href="@{/login/error}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Usuarios</span></a>
         </li>
 
         <!-- Nav Item - Empresas -->
         <li class="nav-item">
-            <a class="nav-link" href="tables.html">
+            <a class="nav-link" th:href="@{/login/error}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Empresas</span></a>
         </li>
@@ -107,11 +105,24 @@
             <!-- Topbar -->
             <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                <!-- Sidebar Toggle (Topbar) -->
-                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                    <i class="fa fa-bars"></i>
-                </button>
-
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" th:href="@{/login/login}" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Salir
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </nav>
             <!-- End of Topbar -->
 
@@ -122,11 +133,8 @@
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Secciones</h1>
                 </div>
-
+                <!-- Acceso Sesión Movimientos -->
                 <div class="row">
-
-
-                    <!-- Acceso Sesión Movimientos -->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-primary shadow h-100 py-2">
                             <div class="card-body">
@@ -139,11 +147,19 @@
                                     <div class="col-auto">
                                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                     </div>
+                                    <div class="col-sm-8"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-4">
+                        <a href="/movimiento/index" class="btn btn-primary">Ingresar a movimientos</a>
+                    </div>
+                </div>
 
+
+
+                <div class="row">
                     <!-- Acceso sesión usuarios -->
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card border-left-warning shadow h-100 py-2">
@@ -161,35 +177,40 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-4">
+                        <a href="/login/error" class="btn btn-primary">Ingresar a Usuarios</a>
+                    </div>
                 </div>
 
-                <!-- Acceso sección empresas -->
-                <div class="col-xl-3 col-md-6 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Sistema de Gestión de
-                                    </div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Empresas</div>
+                <div class="row">
+                    <!-- Acceso sección empresas -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Sistema de Gestión de
                                         </div>
-                                        <div class="col">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-auto">
+                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Empresas</div>
+                                            </div>
+                                            <div class="col">
 
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    <div class="col-auto">
+                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-sm-4">
+                        <a href="/login/error" class="btn btn-primary">Ingresar a empresas</a>
+                    </div>
                 </div>
-
-
-
             </div>
             <!-- /.container-fluid -->
 
@@ -223,15 +244,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Selecciona salir si realmente quieres salir de la sesión actual.</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <a class="btn btn-primary" th:href="@{/login/login}">Salir</a>
             </div>
         </div>
     </div>

@@ -31,6 +31,9 @@ public class LoginController {
     @GetMapping("inicio")
     public String inicio (){return "inicio/inicio2";}
 
+    @GetMapping("error")
+    public String error (){return "inicio/404";}
+
     /*@GetMapping("registro")
     public String registro(Model tiposdocumento){
         //Cargamos los documentos desde la logica de negocio.
@@ -46,7 +49,7 @@ public class LoginController {
     public RedirectView postlogin(Usuario data){
         Response response = this.service.loginUser(data);
         if(response.getCode() == 200){
-            return new RedirectView("/movimiento/createmovimiento");
+            return new RedirectView("/login/inicio");
         }
         else{
             return new RedirectView("/login/error");
