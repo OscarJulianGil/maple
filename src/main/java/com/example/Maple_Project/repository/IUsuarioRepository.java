@@ -16,4 +16,7 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("SELECT u FROM Usuario u WHERE u.correo = ?1")
     ArrayList<Usuario> existeCorreo(String correo);
 
+    @Query("SELECT u FROM Usuario u WHERE u.correo = ?1")
+    Usuario findByUsername(String correo);
+
 }

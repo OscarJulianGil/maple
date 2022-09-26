@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 
     <meta charset="utf-8">
@@ -41,15 +40,21 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">¡Bienvenido!</h1>
                                 </div>
-                                <form action="/login/postlogin" method="post" class="user">
+                                <div th:if="${param.error}">
+                                    Invalid username and password.
+                                </div>
+                                <div th:if="${param.logout}">
+                                    You have been logged out.
+                                </div>
+                                <form th:action="@{/login/login}" method="post" class="user">
                                     <div class="form-group">
-                                        <input required type="email" name="correo" class="form-control form-control-user"
-                                               id="exampleInputEmail" aria-describedby="emailHelp"
+                                        <input required type="email" name="username" class="form-control form-control-user"
+                                               aria-describedby="emailHelp"
                                                placeholder="Ingrese su usuario">
                                     </div>
                                     <div class="form-group">
                                         <input required type="password" name="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="Ingrese su contraseña">
+                                               placeholder="Ingrese su contraseña">
                                     </div>
                                     <!--<div class="form-group">
                                         <div class="custom-control custom-checkbox small">
@@ -64,12 +69,18 @@
                                     <hr>
                                 </form>
                                 <hr>
-                                <div class="text-center">
-                                    <a class="small" href="forgot-password.html">¿Olvido su contraseña?</a>
+                                </form>
+                                <hr>
+                                <div sec:authorize="!isAuthenticated()">
+                                    <a lass="btn btn-danger btn-user btn-block" th:href="@{/oauth2/authorization/auth0}">Ingresar con Auth0</a>
                                 </div>
-                                <!--<div class="text-center">
-                                    <a class="small" href="/login/registro">Crea una cuenta</a>
-                                </div>-->
+                                <div sec:authorize="isAuthenticated()">
+                                    <a href="/login/inicio">Ir al dashboarb!</a>
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="/login/registro">Si eres nuevo, Registrate aqui</a>
+                                </div>
                             </div>
                         </div>
                     </div>

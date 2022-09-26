@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 
 <head>
 
@@ -156,15 +156,6 @@
                                             <th>Usuario</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Concepto</th>
-                                            <th>Monto</th>
-                                            <th>Empresa</th>
-                                            <th>Usuario</th>
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                     <tr th:each="doc : ${mismovimientos}">
                                         <td th:text="${doc.id}"></td>
@@ -175,6 +166,14 @@
                                     </tr>
                                     </tbody>
                                 </table>
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label class="col-md-3" for="SumaMontos">Total Movimientos:</label>
+                                        <div class="col-md-6">
+                                            <p th:text="${SumaMontos}" class="form-control" id="SumaMontos"></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -212,15 +211,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">¿Listo para salir?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Selecciona salir si realmente quieres salir de la sesión actual.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" th:href="@{/login/login}">Salir</a>
                 </div>
             </div>
         </div>

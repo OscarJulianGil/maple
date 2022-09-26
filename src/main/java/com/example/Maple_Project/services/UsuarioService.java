@@ -2,9 +2,12 @@ package com.example.Maple_Project.services;
 
 import com.example.Maple_Project.entities.Usuario;
 import com.example.Maple_Project.repository.IUsuarioRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -23,11 +26,37 @@ public class UsuarioService {
     //El sistema permite crear un usuario
     public Response crearUsuario(Usuario data) {
         Response response = new Response();
+        
+        //Validacion datos 
+        if (!isValidEmailAddress(data.getCorreo())){
+          response.setCode(500);
+          response.setMessage("Error, el usuario dado no es valido");
+          return response;
+        }
+
+        //Validacion del password
+        if(data.getPassword().equals(null) || data.getPassword().equals("")){
+            response.setCode(500);
+            response.setMessage("Error, su contraseña no es valida.");
+            return response;
+        }
+
+        ArrayList<Usuario> existe = this.usuarioRepository.existeCorreo(data.getCorreo());
+        if(existe != null && existe.size() >0){
+            response.setCode(500);
+            response.setMessage("Error, el correo electronico ya esta en uso");
+            return response;
+        }
+        //Importante!! Encriptar la contraseña
+        BCryptPasswordEncoder encrypt = new BCryptPasswordEncoder();
+        data.setPassword(encrypt.encode(data.getPassword()));
         this.usuarioRepository.save(data);
         response.setCode(200);
         response.setMessage("Usuario registrado exitosamente");
         return response;
     }
+
+
 
     //El sistema permite consultar un solo usuario
     public Usuario selectById(int Id) {
@@ -38,6 +67,12 @@ public class UsuarioService {
         } else {
             return null;
         }
+    }
+
+    public Usuario findByUsername(String userName) {
+        Usuario existe = this.usuarioRepository.findByUsername(userName);
+        return existe;
+
     }
 
     //El sistema permite eliminar un usuario
@@ -116,7 +151,11 @@ public class UsuarioService {
 
         //Logica de negocio
         //Validamos datos
-
+        if(!isValidEmailAddress(data.getCorreo())){
+            response.setCode(500);
+            response.setMessage("Error, el usuario dado no es valido");
+            return response;
+        }
 
         //Validamos password
         if(data.getPassword().equals(null) || data.getPassword().equals("")){
@@ -137,4 +176,16 @@ public class UsuarioService {
         return  response;
     }
 
+    public boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
+    }
+
 }
+

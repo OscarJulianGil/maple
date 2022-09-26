@@ -2,7 +2,6 @@ package com.example.Maple_Project.services;
 
 import com.example.Maple_Project.entities.Empresa;
 import com.example.Maple_Project.entities.MovimientoDinero;
-import com.example.Maple_Project.entities.Usuario;
 import com.example.Maple_Project.repository.IEmpresaRepository;
 import com.example.Maple_Project.repository.IMovimientoDineroRepository;
 import org.springframework.stereotype.Service;
@@ -123,4 +122,24 @@ public class MovimientoDineroService {
                 return response;
             }
         }
+
+    //Servicio para ver la suma de todos los montos
+    public Long obtenerSumaMontos(){
+        return movimientoDineroRepository.SumarMonto();
+    }
+
+    //Servicio para ver la suma de los montos por empleado
+    public Long MontosPorEmpleado(Integer id){
+        return movimientoDineroRepository.MontosPorEmpleado(id);
+    }
+
+    //Servicio para ver la suma de los montos por empresa
+    public Long MontosPorEmpresa(Integer id){
+        return movimientoDineroRepository.MontosPorEmpresa(id);
+    }
+
+    //servicio que nos deja conseguir el id de un empleado si tenemos su correo
+    public Integer IdPorCorreo(String Correo){
+        return movimientoDineroRepository.IdPorCorreo(Correo);
+    }
 }
