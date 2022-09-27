@@ -77,4 +77,3 @@ public class WebSecurityConfig implements UserDetailsService {
         return new InMemoryUserDetailsManager(user);
     }*/
 }
-
