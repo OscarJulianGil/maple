@@ -1,4 +1,4 @@
-package com.example.Maple_Project;
+package com.example.mapleproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,11 +1,10 @@
-package com.example.Maple_Project.controllers;
+package com.example.mapleproject.controllers;
 
-import com.example.Maple_Project.entities.Empresa;
-import com.example.Maple_Project.entities.MovimientoDinero;
-import com.example.Maple_Project.entities.Usuario;
-import com.example.Maple_Project.services.EmpresaService;
-import com.example.Maple_Project.services.MovimientoDineroService;
-import com.example.Maple_Project.services.Response;
+import com.example.mapleproject.entities.Empresa;
+import com.example.mapleproject.entities.MovimientoDinero;
+import com.example.mapleproject.services.EmpresaService;
+import com.example.mapleproject.services.MovimientoDineroService;
+import com.example.mapleproject.services.Response;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

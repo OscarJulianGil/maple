@@ -1,6 +1,6 @@
-package com.example.Maple_Project.dto;
+package com.example.mapleproject.dto;
 
-import com.example.Maple_Project.entities.Empresa;
+import com.example.mapleproject.entities.Empresa;
 
 public class registroDTO {
 

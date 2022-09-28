@@ -1,9 +1,9 @@
-package com.example.Maple_Project.services;
+package com.example.mapleproject.services;
 
-import com.example.Maple_Project.entities.Empresa;
-import com.example.Maple_Project.entities.MovimientoDinero;
-import com.example.Maple_Project.repository.IEmpresaRepository;
-import com.example.Maple_Project.repository.IMovimientoDineroRepository;
+import com.example.mapleproject.entities.Empresa;
+import com.example.mapleproject.entities.MovimientoDinero;
+import com.example.mapleproject.repository.IEmpresaRepository;
+import com.example.mapleproject.repository.IMovimientoDineroRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 

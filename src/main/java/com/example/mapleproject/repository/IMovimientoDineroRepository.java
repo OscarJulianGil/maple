@@ -1,7 +1,7 @@
-package com.example.Maple_Project.repository;
+package com.example.mapleproject.repository;
 
-import com.example.Maple_Project.entities.Empresa;
-import com.example.Maple_Project.entities.MovimientoDinero;
+import com.example.mapleproject.entities.Empresa;
+import com.example.mapleproject.entities.MovimientoDinero;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

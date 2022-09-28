@@ -1,4 +1,4 @@
-package com.example.Maple_Project.entities;
+package com.example.mapleproject.entities;
 
 import javax.persistence.*;
 

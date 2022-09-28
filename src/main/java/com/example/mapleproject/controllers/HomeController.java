@@ -1,7 +1,7 @@
-package com.example.Maple_Project.controllers;
+package com.example.mapleproject.controllers;
 
-import com.example.Maple_Project.entities.Usuario;
-import com.example.Maple_Project.services.UsuarioService;
+import com.example.mapleproject.entities.Usuario;
+import com.example.mapleproject.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;

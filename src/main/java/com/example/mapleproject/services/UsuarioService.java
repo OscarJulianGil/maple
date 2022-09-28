@@ -1,7 +1,7 @@
-package com.example.Maple_Project.services;
+package com.example.mapleproject.services;
 
-import com.example.Maple_Project.entities.Usuario;
-import com.example.Maple_Project.repository.IUsuarioRepository;
+import com.example.mapleproject.entities.Usuario;
+import com.example.mapleproject.repository.IUsuarioRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

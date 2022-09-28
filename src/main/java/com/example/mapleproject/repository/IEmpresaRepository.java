@@ -1,6 +1,6 @@
-package com.example.Maple_Project.repository;
+package com.example.mapleproject.repository;
 
-import com.example.Maple_Project.entities.Empresa;
+import com.example.mapleproject.entities.Empresa;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

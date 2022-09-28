@@ -1,12 +1,12 @@
-package com.example.Maple_Project.controllers;
+package com.example.mapleproject.controllers;
 
 
-import com.example.Maple_Project.dto.registroDTO;
-import com.example.Maple_Project.entities.Empresa;
-import com.example.Maple_Project.entities.Usuario;
-import com.example.Maple_Project.services.EmpresaService;
-import com.example.Maple_Project.services.Response;
-import com.example.Maple_Project.services.UsuarioService;
+import com.example.mapleproject.dto.registroDTO;
+import com.example.mapleproject.entities.Empresa;
+import com.example.mapleproject.entities.Usuario;
+import com.example.mapleproject.services.EmpresaService;
+import com.example.mapleproject.services.Response;
+import com.example.mapleproject.services.UsuarioService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

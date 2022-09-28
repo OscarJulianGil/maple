@@ -1,6 +1,6 @@
-package com.example.Maple_Project.security;
+package com.example.mapleproject.security;
 
-import com.example.Maple_Project.services.UsuarioService;
+import com.example.mapleproject.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,7 +49,7 @@ public class WebSecurityConfig implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.example.Maple_Project.entities.Usuario userObject = this.service.findByUsername(username);
+        com.example.mapleproject.entities.Usuario userObject = this.service.findByUsername(username);
         System.out.println(username);
         if (userObject != null) {
             List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();

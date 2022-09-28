@@ -1,4 +1,4 @@
-package com.example.Maple_Project.services;
+package com.example.mapleproject.services;
 
 public class Response {
 
