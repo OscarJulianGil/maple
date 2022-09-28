@@ -14,7 +14,7 @@
 	<name>mapleproject</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>18</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -59,7 +59,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.example</groupId>
-			<artifactId>Maple_Project</artifactId>
+			<artifactId>mapleproject</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>import</scope>
 		</dependency>
