@@ -14,7 +14,7 @@
 	<name>mapleproject</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>1.7</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -57,7 +57,12 @@
 			<version>1.6.2</version>
 			<scope>import</scope>
 		</dependency>
-
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>mapleproject</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>import</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
